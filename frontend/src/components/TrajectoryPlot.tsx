@@ -19,6 +19,11 @@ function TrajectoryPlot({ x, y, z}: TrajectoryPlotProps) {
               x: x,
               y: y,
               z: z,
+              name: "a strange loop",
+              line: {
+                color: 'violet',
+                width: 3,
+              }
             },
           ]}
           layout={{
