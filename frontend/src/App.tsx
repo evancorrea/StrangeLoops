@@ -1,10 +1,6 @@
 import './App.css'
-import PlotModule from 'react-plotly.js'
+import TrajectoryPlot from './components/TrajectoryPlot';
 import { useEffect, useState} from 'react';
-
-const Plot = (
-  'default' in PlotModule ? PlotModule.default : PlotModule
-) as typeof PlotModule
 
 type Trajectory = {
   x: number[]
@@ -46,22 +42,10 @@ function App() {
       <h1>Lorenz Attractor</h1>
 
       <section className="plot-container">
-        <Plot
-          data={[
-            {
-              type: 'scatter3d',
-              mode: 'lines',
-              x: trajectory.x,
-              y: trajectory.y,
-              z: trajectory.z,
-            },
-          ]}
-          layout={{
-            autosize: true,
-            margin: { t: 0, r: 0, b: 0, l: 0 },
-          }}
-          useResizeHandler
-          style={{ width: '100%', height: '100%' }}
+        <TrajectoryPlot
+        x={trajectory.x}
+        y={trajectory.y}
+        z={trajectory.z}
         />
       </section>
     </main>
