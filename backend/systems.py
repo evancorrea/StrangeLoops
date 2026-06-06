@@ -1,7 +1,7 @@
 #define the Lorenz equations
 import numpy as np
 
-def lorenz(state, sigma=10, rho=28, beta=8/3):
+def lorenz(state, sigma, rho, beta):
     x, y, z = state
 
     dxdt = sigma * (y-x)

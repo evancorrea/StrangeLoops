@@ -10,6 +10,10 @@ class SimulationRequest(BaseModel):
     dt: float
     num_steps: int
     initial_state: list[float]
+    sigma: float
+    rho: float
+    beta: float
+    
 
 app.add_middleware(
     CORSMiddleware,
@@ -23,7 +27,11 @@ def simulate(request: SimulationRequest):
     trajectory = run_simulation(
         request.dt,
         request.num_steps,
-        request.initial_state
+        request.initial_state,
+        request.sigma,
+        request.rho,
+        request.beta
+        
     )
 
     return {
