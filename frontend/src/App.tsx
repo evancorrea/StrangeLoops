@@ -15,6 +15,9 @@ function App() {
   const [error, setError] = useState<string | null>(null)
   const [dt, setDt] = useState(0.01)
   const [numSteps, setNumSteps] = useState(10000)
+  const [sigma, setSigma] = useState(10)
+  const [rho, setRho] = useState(28)
+  const [beta, setBeta] = useState(2.67)
 
   function runSimulation() {
     setError(null)
@@ -28,6 +31,9 @@ function App() {
         dt: dt,
         num_steps: numSteps,
         initial_state: [1,1,1],
+        sigma: sigma,
+        rho: sigma,
+        beta: beta
       }),
     })
     .then((response) => {
@@ -55,6 +61,7 @@ function App() {
       <label>
         Time step: {dt}
         <input
+          className='slider'
           type = "range"
           step="0.001"
           min="0.001"
@@ -67,12 +74,52 @@ function App() {
       <label>
         Number of Steps: {numSteps}
         <input
+        className='slider'
         type = "range"
         step = "100"
         min = "100"
         max = "39000"
         value = {numSteps}
         onChange = {(event) => setNumSteps(Number(event.target.value))}
+        />
+      </label>
+    
+      <label>
+        Sigma: {sigma}
+        <input
+        className = 'slider'
+        type = "range"
+        step = '0.1'
+        min = '1'
+        max = "30"
+        value = {sigma}
+        onChange = {(event) => setSigma(Number(event.target.value))}
+        />
+      </label>
+
+      <label>
+        Rho: {rho}
+        <input
+        className='slider'
+        type = "range"
+        step = '0.1'
+        min = '0'
+        max = "50"
+        value = {rho}
+        onChange = {(event) => setRho(Number(event.target.value))}
+        />
+      </label>
+
+      <label>
+        Beta: {beta}
+        <input
+        className='slider'
+        type = "range"
+        step = '0.01'
+        min = '0.5'
+        max = "10"
+        value = {beta}
+        onChange = {(event) => setBeta(Number(event.target.value))}
         />
       </label>
 
