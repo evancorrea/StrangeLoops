@@ -1,9 +1,15 @@
 from fastapi import FastAPI
+from pydantic import BaseModel
 from simulation import run_simulation
 from fastapi.middleware.cors import CORSMiddleware
 
 
 app = FastAPI()
+
+class SimulationRequest(BaseModel):
+    dt: float
+    num_steps: int
+    initial_state: list[float]
 
 app.add_middleware(
     CORSMiddleware,
@@ -12,9 +18,13 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.get("/lorenz")
-def get_lorenz():
-    trajectory = run_simulation(0.01, 10000)
+@app.post("/simulate")
+def simulate(request: SimulationRequest):
+    trajectory = run_simulation(
+        request.dt,
+        request.num_steps,
+        request.initial_state
+    )
 
     return {
         "x": trajectory[:, 0].tolist(),
