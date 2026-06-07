@@ -58,7 +58,26 @@ function App() {
     <main className="app">
       <h1>Lorenz Attractor</h1>
 
-      <label>
+      <div className='simulation-page'>
+        <div className='output-panel'>
+          <div className='plot'>
+             {trajectory && (
+              <TrajectoryPlot
+              x={trajectory.x}
+              y={trajectory.y}
+              z={trajectory.z}
+              />
+            )}
+          </div>
+    
+          <button type="button" onClick={runSimulation}>
+        Run Simulation
+      </button>
+        </div>
+
+        <div className='parameter-panel'>
+          <div className='parameter-control'>
+                  <label>
         Time step: {dt}
         <input
           className='slider'
@@ -122,22 +141,19 @@ function App() {
         onChange = {(event) => setBeta(Number(event.target.value))}
         />
       </label>
+          </div>
+        </div>
 
-      <button type="button" onClick={runSimulation}>
-        Run Simulation
-      </button>
+
+      </div>
+      
+
+
+      
 
        {error && <p>Could not load trajectory: {error} </p>}
 
-    {trajectory && (
-      <section className="plot-container">
-        <TrajectoryPlot
-        x={trajectory.x}
-        y={trajectory.y}
-        z={trajectory.z}
-        />
-      </section>
-    )}
+   
       
     </main>
   )
