@@ -1,4 +1,5 @@
 import PlotModule from 'react-plotly.js'
+import type Plotly from 'plotly.js'
 
 const Plot = (
     'default' in PlotModule ? PlotModule.default : PlotModule
@@ -8,8 +9,9 @@ type TrajectoryPlotProps = {
     x: number[]
     y: number[]
     z: number[]
+    stretching: number[]
 }
-function TrajectoryPlot({ x, y, z}: TrajectoryPlotProps) {
+function TrajectoryPlot({ x, y, z, stretching}: TrajectoryPlotProps) {
     return (
         <Plot
           data={[
@@ -21,10 +23,14 @@ function TrajectoryPlot({ x, y, z}: TrajectoryPlotProps) {
               z: z,
               name: "a strange loop",
               line: {
-                color: 'violet',
+                color: stretching,
+                colorscale: 'Viridis',
                 width: 3,
+                colorbar: {
+                  title: { text: 'Local stretching'}
+                }
               }
-            },
+            } as Plotly.Data,
           ]}
           layout={{
             autosize: true,
