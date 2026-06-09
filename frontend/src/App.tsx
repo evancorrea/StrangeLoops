@@ -7,6 +7,7 @@ type Trajectory = {
   x: number[]
   y: number[]
   z: number[]
+  stretching: number[]
 }
 
 const API_URL = 'http://localhost:8000/simulate'
@@ -53,8 +54,6 @@ function App() {
   }
 
 
-
-
   return (
     <main className="app">
       <h1>Lorenz Attractor</h1>
@@ -67,6 +66,7 @@ function App() {
               x={trajectory.x}
               y={trajectory.y}
               z={trajectory.z}
+              stretching={trajectory.stretching}
               />
             )}
           </div>

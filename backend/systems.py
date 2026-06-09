@@ -10,3 +10,11 @@ def lorenz(state, sigma, rho, beta):
 
     return np.array([dxdt, dydt, dzdt])
 
+def lorenz_jacobian(state, sigma, rho, beta):
+    x, y, z, = state
+
+    return np.array([
+        [-sigma, sigma, 0],
+        [rho - z, -1, -x],
+        [y, x, -beta],
+    ])
