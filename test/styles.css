@@ -1,0 +1,18 @@
+.header,
+.footer {
+    border: 2px solid black;
+    padding: 20px;
+}
+
+.left,
+.right {
+    flex: 1;
+    border: 2px solid black;
+    padding: 20px;
+    height: 200px;
+}
+
+.content {
+    display: flex;
+    gap: 20px
+}
